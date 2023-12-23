@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Tilt+Neon&display=swap" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        font-family: "Tilt Neon", sans-serif;
+      }
+
+      section p {
+        text-align: center;
+        padding: 1rem;
+        margin: 0 1rem;
+        border: 2px solid;
+      }
+
+      .hasil {
+        display: flex;
+        align-items: center;
+        column-gap: 1rem;
+        padding: 1rem;
+        border-left: 2px solid;
+        border-right: 2px solid;
+      }
+
+      .pilihan ul {
+        border: 2px solid;
+        border-radius: 1rem;
+        display: flex;
+        column-gap: 1rem;
+        padding: 1rem;
+        margin: 0 1rem;
+        list-style-type: none;
+      }
+
+      .hasil img {
+        width: 100%;
+        border-radius: 50%;
+      }
+
+      .hasil p {
+        text-align: center;
+        padding-bottom: 1rem;
+      }
+
+      .pilihan img {
+        width: 100%;
+        cursor: pointer;
+        border-radius: 50%;
+      }
+
+      section {
+        border: 2px solid;
+        padding: 1rem 0;
+      }
+
+      @media only screen and (min-width: 600px) {
+        body {
+          width: 30%;
+          margin: auto;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="hasil">
+      <div class="user-main">
+        <p>USER</p>
+        <img src="/asset/n.png" alt="" />
+      </div>
+      <div class="comp-main">
+        <p>COMP</p>
+        <img src="/asset/n.png" alt="" />
+      </div>
+    </div>
+    <section>
+      <div class="pilihan">
+        <ul>
+          <li>
+            <img src="/asset/Batu.png" alt="" />
+          </li>
+          <li>
+            <img src="/asset/Gunting.png" alt="" />
+          </li>
+          <li>
+            <img src="/asset/Kertas.png" alt="" />
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <script>
+      const pilihan = document.querySelectorAll("li img");
+      const main = document.querySelector(".hasil");
+      pilihan.forEach(function (e) {
+        e.addEventListener("click", function () {
+          const src = e.attributes.src.nodeValue;
+          const pilihanUser = src.split(".");
+          const user = document.querySelector(".user-main img");
+          user.setAttribute("src", pilihanUser[0] + ".png");
+          user.style.transform = "rotate(90deg) scaleX(-1)";
+
+          const pilihanComp = acakPilih();
+          const comp = document.querySelector(".comp-main img");
+          comp.setAttribute("src", "asset/" + pilihanComp + ".png");
+          comp.style.transform = "rotate(-90deg) scaleX(1)";
+        });
+      });
+
+      function acakPilih() {
+        let acak = Math.random();
+        if (acak < 0.34) {
+          return "Batu";
+        } else if (acak >= 0.34 && acak < 0.67) {
+          return "Gunting";
+        } else {
+          return "Kertas";
+        }
+      }
+    </script>
+  </body>
+</html>
